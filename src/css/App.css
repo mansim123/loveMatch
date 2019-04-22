@@ -3,30 +3,6 @@
   color:black;
 }
 
-.loadingGif {
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    display: block;
-    opacity: 1;
-    background-color: #fff;
-    z-index: 99;
-    text-align: center;
-}
-
-.loadingimage {
-	background-image: url('../img/intro.gif');
-    z-index: 100;
-    width:480px;
-    height:480px;
-}
-
-@media only screen and (max-width: 580px) {
-
-	.loadingimage {
-	    left: 35%;
-	}
-
-
+body {
+  overflow: hidden;
 }

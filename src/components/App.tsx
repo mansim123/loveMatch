@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import logo from "../img/logo.svg";
 import "../css/App.css";
 import Form from "../components/form";
+import PreLodader from "../components/preLoader"
 
 class App extends Component {
   state = {
@@ -17,10 +18,7 @@ class App extends Component {
     if (loading) {
       return (
         <div>
-          <div className="loadingGif">
-            <div className="loadingimage" />   
-          </div>
-          <h1>Loading...</h1>
+          <PreLodader></PreLodader>
         </div>
       );
     }
