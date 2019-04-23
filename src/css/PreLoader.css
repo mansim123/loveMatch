@@ -11,6 +11,18 @@
     overflow: hidden;
 }
 
+.loadingGif h1{
+    position: absolute;
+    margin: auto;
+    width:186px;
+    height:8px;
+    top: 180px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index:100;
+}
+
 .heart {
 	background-image: url('../img/heartIntro.png');
     z-index: 108;
@@ -27,7 +39,6 @@
 
 .heartBg1 {
     background-image: url('../img/heartBg1.png');
-    z-index: 100;
     width:186px;
     height:148px;
     position: absolute;
@@ -40,7 +51,6 @@
 
 .heartBg2 {
     background-image: url('../img/heartBg2.png');
-    z-index: 100;
     width:186px;
     height:148px;
     position: absolute;
@@ -53,7 +63,6 @@
 
 .heartBg3 {
     background-image: url('../img/heartBg3.png');
-    z-index: 100;
     width:186px;
     height:148px;
     position: absolute;
@@ -66,7 +75,6 @@
 
 .heartBg4 {
     background-image: url('../img/heartBg4.png');
-    z-index: 100;
     width:186px;
     height:148px;
     position: absolute;

@@ -1,17 +1,15 @@
-import * as React from "react";
+import React from 'react';
 
-class Form extends React.Component<{}, IState> {
-  constructor(props: {}) {
-    super(props);
+class Form extends React.Component {
+  constructor(props) {
+    super();
     this.state = {
       firstName: "",
       secondName: ""
     };
   }
-  handleSubmit(e: any) {
+  handleSubmit(e) {
     e.preventDefault();
-
-    console.log(this);
 
     // this.setState({
     //   firstName: "",
@@ -40,11 +38,6 @@ class Form extends React.Component<{}, IState> {
       </div>
     );
   }
-}
-
-interface IState {
-  firstName: string;
-  secondName: string;
 }
 
 export default Form;
