@@ -8,13 +8,19 @@ class App extends React.Component{
       super();
       this.state = {
         loading: true,
-        loadingTime: 4000,
+        loadingTime: 1000,
       }
+
+    this.demoAsyncCall = this.demoAsyncCall.bind(this);
 
     }
   
   componentDidMount() {
-    demoAsyncCall().then(() => this.setState({ loading: false }));
+    this.demoAsyncCall().then(() => this.setState({ loading: false }));
+  }
+
+  demoAsyncCall() {
+    return new Promise(resolve => setTimeout(() => resolve(), this.state.loadingTime));
   }
 
     render() {
@@ -35,8 +41,6 @@ class App extends React.Component{
   }
 }
 
-function demoAsyncCall() {
-  return new Promise(resolve => setTimeout(() => resolve(), 5000));
-}
+
 
 export default App;

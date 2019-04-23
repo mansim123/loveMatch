@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios'
+import PreLodader from "../components/preLoader"
 
 class Form extends React.Component {
   constructor(props) {
@@ -8,8 +10,28 @@ class Form extends React.Component {
       secondName: ""
     };
   }
+
   handleSubmit(e) {
     e.preventDefault();
+
+    // let headers = {
+    //   'X-RapidAPI-Host': "love-calculator.p.rapidapi.com",
+    //   'X-RapidAPI-Key': "36f157f25amsh8e948fed8f46962p116379jsne2308a7d5a93"
+    // }
+
+    // // Make a request for a user with a given ID
+    // axios.get('https://love-calculator.p.rapidapi.com/getPercentage?fname=John&sname=Alice', { headers: headers })
+    //   .then(function (response) {
+    //     // handle success
+    //     console.log(response);
+    //   })
+    //   .catch(function (error) {
+    //     // handle error
+    //     console.log(error);
+    //   })
+    //   .then(function () {
+    //     // always executed
+    //   });
 
     // this.setState({
     //   firstName: "",
