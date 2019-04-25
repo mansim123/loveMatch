@@ -8,7 +8,7 @@ class App extends React.Component{
       super();
       this.state = {
         loading: true,
-        loadingTime: 200,
+        loadingTime: 2000,
         loadingText: "loading..."
       }
 
@@ -17,11 +17,19 @@ class App extends React.Component{
     }
   
   componentDidMount() {
+    document.body.style.overflow = "hidden";
     this.demoAsyncCall().then(() => this.setState({ loading: false }));
   }
 
   demoAsyncCall() {
-    return new Promise(resolve => setTimeout(() => resolve(), this.state.loadingTime));
+
+    let thisThis = this;
+    return new Promise(function(resolve){
+      setTimeout(function(){
+        resolve();
+        document.body.style.overflow = "visible";
+      }, thisThis.state.loadingTime)
+    });
   }
 
     render() {

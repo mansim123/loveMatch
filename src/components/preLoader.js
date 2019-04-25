@@ -11,6 +11,7 @@ class preLodaer extends React.Component {
     }
 
     this.heart = null;
+    this.loadingCopy = null;
     this.heartBg1 = null;
     this.heartBg2 = null;
     this.heartBg3 = null;
@@ -18,11 +19,11 @@ class preLodaer extends React.Component {
 
     this.t = null;
 
-    //this.animateHeart = this.animateHeart.bind(this);
     this.animateHeartBg = this.animateHeartBg.bind(this);
   }
 
   componentDidMount() {
+
     const heartBackgrounds = [
       this.heartBg1,
       this.heartBg2,
@@ -35,6 +36,7 @@ class preLodaer extends React.Component {
     }
 
     this.t = TweenMax.to(this.heart, 0, { scale: 0.75 });
+    this.t = TweenMax.to(this.loadingCopy, 0, { scale: 200,alpha:0 });
 
     this.t = TweenMax.delayedCall(0, this.animateHeartBg, [heartBackgrounds, 0]);
   }
@@ -44,6 +46,8 @@ class preLodaer extends React.Component {
   }
 
   animateHeartBg(whichBg, b) {
+
+    this.t = TweenMax.to(this.loadingCopy, 1, { scale: 1, alpha: 1, ease: "Powers3.easeOut"});
 
     this.t = TweenMax.to(whichBg[b], 0, { scale: 0.75 });
     this.t = TweenMax.to(whichBg[b], 0.5, { delay: 0.25, scale: 15 , onComplete(){
@@ -79,7 +83,7 @@ class preLodaer extends React.Component {
           <div className="heartBg2" ref={e => (this.heartBg2 = e)} />
           <div className="heartBg3" ref={e => (this.heartBg3 = e)} />
           <div className="heartBg4" ref={e => (this.heartBg4 = e)} />
-          <h1>{this.state.loadingText}</h1>
+          <h1 ref={e => (this.loadingCopy = e)}>{this.state.loadingText}</h1>
         </div>
       </div>
     );

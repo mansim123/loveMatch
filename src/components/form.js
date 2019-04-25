@@ -15,12 +15,51 @@ class MyForm extends React.Component {
       showLoading: false,
       showResults: false,
       loadingText: "finding your stats...",
-      returnData: []
+      returnData: [],
+      errors: {
+        firstName:"",
+        secondName:""
+      }
     };
+  }
+
+  validateInputs() {
+    let formIsValid = true
+    let errors = {}
+
+    if (!this.state.firstName || this.state.firstName.length < 3) {
+      errors.firstName = "* First name needs to be minimum 3 characters long"
+      // errors.outlineName = redBorder
+      formIsValid = false
+    }
+    else {
+      // errors.name = ""
+      // errors.outlineName = normalBorder
+    }
+
+    if (!this.state.secondName || this.state.secondName.length < 3) {
+      errors.secondName = "* Second name needs to be minimum 3 characters long"
+      // errors.outlineName = redBorder
+      formIsValid = false
+    }
+    else {
+      // errors.name = ""
+      // errors.outlineName = normalBorder
+    }
+
+    this.setState({
+      errors: errors
+    })
+
+    return formIsValid
   }
 
   handleSubmit(e) {
     e.preventDefault();
+
+    if (!this.validateInputs()) {
+      return
+    }
 
     this.setState({
       showLoading: true
@@ -70,7 +109,10 @@ class MyForm extends React.Component {
   }
 
   render() {
-    console.log(this.state);
+    
+    let errorsStyle = {
+
+    }
     return (
       <div>
         <Container className="formInfo">
@@ -94,6 +136,7 @@ class MyForm extends React.Component {
                 placeholder="Add first name"
                 onChange={e => this.setState({ firstName: e.target.value })}
               />
+              <p style={errorsStyle}>{this.state.errors.firstName}</p>
             </Form.Group>
             <Form.Group>
               <Form.Label className="inputName">
@@ -107,9 +150,10 @@ class MyForm extends React.Component {
                   this.setState({ secondName: e.target.value })
                 }
               />
+              <p style={errorsStyle}>{this.state.errors.secondName}</p>
             </Form.Group>
-            <Button type="submit" size="lg" color="primary">
-              Submit
+            <Button className="formBtn" type="submit" size="lg" color="primary">
+              Test our match!
             </Button>
           </Container>
         </Form>
