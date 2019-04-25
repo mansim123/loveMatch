@@ -1,0 +1,40 @@
+$font-stack: "Luckiest Guy", "cursive";
+
+.formInfo {
+  h1 {
+    font-family: $font-stack;
+    color: white;
+    text-align: center;
+    width: 100%;
+  }
+
+  h2 {
+    color: white;
+    text-align: center;
+    width: 100%;
+    
+  }
+
+  .rowTop {
+    padding-top: 100px;
+  }
+
+  @media only screen and (max-width: 750px) {
+    .rowTop {
+      padding-top: 50px;
+    }
+  }
+}
+
+.inputName {
+  font-size: 30px;
+  color: white;
+  padding: 20px 0px;
+}
+
+@media only screen and (max-width: 750px) {
+  .inputName {
+    font-size: 20px;
+    color: white;
+  }
+}

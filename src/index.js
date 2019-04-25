@@ -1,8 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './css/index.css';
+import './css/index.scss';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
+import 'bootstrap/dist/css/bootstrap.css'
+var WebFont = require("webfontloader");
+
+WebFont.load({
+  google: {
+    families: ['Luckiest Guy', 'cursive']
+  }
+});
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

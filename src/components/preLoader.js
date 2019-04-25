@@ -1,10 +1,14 @@
 import * as React from "react";
-import "../css/PreLoader.css";
+import "../css/PreLoader.scss";
 import { TweenMax } from "gsap";
 
 class preLodaer extends React.Component {
-  constructor() {
+  constructor(props) {
     super();
+
+    this.state = {
+      loadingText: props.loadingText
+    }
 
     this.heart = null;
     this.heartBg1 = null;
@@ -32,7 +36,7 @@ class preLodaer extends React.Component {
 
     this.t = TweenMax.to(this.heart, 0, { scale: 0.75 });
 
-    this.t = TweenMax.delayedCall(0.25, this.animateHeartBg, [heartBackgrounds, 0]);
+    this.t = TweenMax.delayedCall(0, this.animateHeartBg, [heartBackgrounds, 0]);
   }
 
   componentWillUnmount() {
@@ -68,14 +72,14 @@ class preLodaer extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="loadingCont">
         <div className="loadingGif">
           <div className="heart" ref={e => (this.heart = e)} />
           <div className="heartBg1" ref={e => (this.heartBg1 = e)} />
           <div className="heartBg2" ref={e => (this.heartBg2 = e)} />
           <div className="heartBg3" ref={e => (this.heartBg3 = e)} />
           <div className="heartBg4" ref={e => (this.heartBg4 = e)} />
-          <h1>Loading...</h1>
+          <h1>{this.state.loadingText}</h1>
         </div>
       </div>
     );

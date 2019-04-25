@@ -1,6 +1,6 @@
 import React from 'react';
-import '../css/App.css';
-import Form from "./form";
+import '../css/App.scss';
+import MyForm from "./form";
 import PreLodader from "../components/preLoader"
 
 class App extends React.Component{
@@ -8,7 +8,8 @@ class App extends React.Component{
       super();
       this.state = {
         loading: true,
-        loadingTime: 1000,
+        loadingTime: 200,
+        loadingText: "loading..."
       }
 
     this.demoAsyncCall = this.demoAsyncCall.bind(this);
@@ -29,15 +30,15 @@ class App extends React.Component{
     if (loading) {
       return (  
         <div>
-          <PreLodader ></PreLodader>
+          <PreLodader loadingText={this.state.loadingText}></PreLodader>
         </div>
       );
     }
     return (
       <div className="App">
-          <Form />
-        </div>
-    )
+        <MyForm />
+      </div>
+    );
   }
 }
 
