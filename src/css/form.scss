@@ -6,6 +6,7 @@ $font-stack: "Luckiest Guy", "cursive";
     color: white;
     text-align: center;
     width: 100%;
+    font-size: 5rem !important;
   }
 
   h2 {
@@ -17,27 +18,34 @@ $font-stack: "Luckiest Guy", "cursive";
   .rowTop {
     padding-top: 100px;
   }
-
-  @media only screen and (max-width: 750px) {
-    .rowTop {
-      padding-top: 50px;
-    }
-  }
-}
-
-.formBtn {
-  margin: 20px 0px;
 }
 
 .inputName {
-  font-size: 30px;
-  color: white;
-  padding: 20px 0px;
-}
+    font-size: 30px;
+    color: white;
+    padding: 20px 0px;
+  }
 
 @media only screen and (max-width: 750px) {
+  .rowTop {
+    padding-top: 50px;
+  }
+  .formBtn {
+    margin: 20px 0px;
+  }
+
+  
   .inputName {
     font-size: 20px;
     color: white;
+  }
+  .formInfo {
+    h1 {
+      font-size: 3rem !important;
+    }
+
+    h2 {
+      font-size: 20px !important;
+    }
   }
 }

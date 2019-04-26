@@ -5,6 +5,7 @@ import Ribbon from "../components/ribbon";
 import Results from "../components/results";
 import "../css/form.scss";
 import { Button, Container, Form, Row } from "react-bootstrap";
+import { TweenMax } from "gsap";
 
 class MyForm extends React.Component {
   constructor(props) {
@@ -14,55 +15,106 @@ class MyForm extends React.Component {
       secondName: "",
       showLoading: false,
       showResults: false,
+      showForm: true,
       loadingText: "finding your stats...",
+      topLine: "Enter your details below to find out your compatablity!",
+      topLineColor:'white',
       returnData: [],
       errors: {
-        firstName:"",
-        secondName:""
+        firstName: "",
+        secondName: ""
       }
     };
+
+    this.loveText = null;
+    this.t = null;
+
+    let errorsStyle = {};
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+
+    this.handleForm = (
+      <div>
+        <Form onSubmit={e => this.handleSubmit(e)}>
+          <Container>
+            <Form.Group>
+              <Form.Label className="inputName">
+                Please enter person number one!
+              </Form.Label>
+              <Form.Control
+                size="lg"
+                type="text"
+                placeholder="Add first name"
+                onChange={e => this.setState({ firstName: e.target.value })}
+              />
+              <p style={errorsStyle}>{this.state.errors.firstName}</p>
+            </Form.Group>
+            <Form.Group>
+              <Form.Label className="inputName">
+                Please enter person number two!
+              </Form.Label>
+              <Form.Control
+                size="lg"
+                type="text"
+                placeholder="Add Second name"
+                onChange={e => this.setState({ secondName: e.target.value })}
+              />
+              <p style={errorsStyle}>{this.state.errors.secondName}</p>
+            </Form.Group>
+            <Button className="formBtn" type="submit" size="lg" color="primary">
+              Test our match!
+            </Button>
+          </Container>
+        </Form>
+      </div>
+    );
+  }
+
+  componentDidMount() {
+    this.animatePage();
   }
 
   validateInputs() {
-    let formIsValid = true
-    let errors = {}
+    let formIsValid = true;
+    let errors = {};
 
     if (!this.state.firstName || this.state.firstName.length < 3) {
-      errors.firstName = "* First name needs to be minimum 3 characters long"
+      errors.firstName = "* First name needs to be minimum 3 characters long";
       // errors.outlineName = redBorder
-      formIsValid = false
-    }
-    else {
+      formIsValid = false;
+    } else {
       // errors.name = ""
       // errors.outlineName = normalBorder
     }
 
     if (!this.state.secondName || this.state.secondName.length < 3) {
-      errors.secondName = "* Second name needs to be minimum 3 characters long"
+      errors.secondName = "* Second name needs to be minimum 3 characters long";
       // errors.outlineName = redBorder
-      formIsValid = false
-    }
-    else {
+      formIsValid = false;
+    } else {
       // errors.name = ""
       // errors.outlineName = normalBorder
     }
 
     this.setState({
       errors: errors
-    })
+    });
 
-    return formIsValid
+    return formIsValid;
   }
 
   handleSubmit(e) {
     e.preventDefault();
 
     if (!this.validateInputs()) {
-      return
+      return;
     }
 
+    let formThis = this;
+
     this.setState({
-      showLoading: true
+      showLoading: true,
+      showForm: false
     });
 
     let headers = {
@@ -88,15 +140,26 @@ class MyForm extends React.Component {
 
         setTimeout(
           function() {
-            this.setState({ showLoading: false });
-            this.setState({ showResults: true });
-          }.bind(this),
+            formThis.setState({
+              showLoading: false,
+              showResults: true,
+              topLineColor: "white",
+              topLine: "See your results below!"
+            });
+          },
           3000
         );
       })
       .catch(function(error) {
         // handle error
         console.log(error);
+        formThis.setState({
+          showLoading: false,
+          showResults: false,
+          showForm: true,
+          topLineColor: "#efff00",
+          topLine: "Something went wrong, can you submit again please?"
+        });
       })
       .then(function() {
         // always executed
@@ -108,55 +171,37 @@ class MyForm extends React.Component {
     });
   }
 
-  render() {
-    
-    let errorsStyle = {
+  animatePage() {
+    let speed = 0.2; //seconds
+    this.t = TweenMax.to(this.loveText, 1, {
+      scale: 0.9,
+      ease: "Elastic.easeOut",
+      z: 0.1,
+      rotationZ: 0.01,
+      force3D: true,
+      repeat: -1,
+      repeatDelay: speed
+    });
+  }
 
+  render() {
+    const errorLine = {
+      color:this.state.topLineColor
     }
     return (
       <div>
         <Container className="formInfo">
           <Row className="rowTop">
-            <h1>LOVE MATCH</h1>
+            <h1 className="loveText" ref={e => (this.loveText = e)}>
+              LOVE MATCH
+            </h1>
           </Row>
           <Row>
-            <h2>Enter your details below to find out your compatablity!</h2>
+            <h2 style={errorLine}>{this.state.topLine}</h2>
           </Row>
           <Ribbon />
         </Container>
-        <Form onSubmit={e => this.handleSubmit(e)}>
-          <Container>
-            <Form.Group>
-              <Form.Label className="inputName">
-                Please enter person number one!
-              </Form.Label>
-              <Form.Control
-                size="lg"
-                type="text"
-                placeholder="Add first name"
-                onChange={e => this.setState({ firstName: e.target.value })}
-              />
-              <p style={errorsStyle}>{this.state.errors.firstName}</p>
-            </Form.Group>
-            <Form.Group>
-              <Form.Label className="inputName">
-                Please enter person number two!
-              </Form.Label>
-              <Form.Control
-                size="lg"
-                type="text"
-                placeholder="Add Second name"
-                onChange={e =>
-                  this.setState({ secondName: e.target.value })
-                }
-              />
-              <p style={errorsStyle}>{this.state.errors.secondName}</p>
-            </Form.Group>
-            <Button className="formBtn" type="submit" size="lg" color="primary">
-              Test our match!
-            </Button>
-          </Container>
-        </Form>
+        {this.state.showForm && this.handleForm}
         {this.state.showLoading && (
           <PreLodader loadingText={this.state.loadingText} />
         )}

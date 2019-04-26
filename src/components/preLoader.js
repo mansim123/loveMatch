@@ -23,7 +23,7 @@ class preLodaer extends React.Component {
   }
 
   componentDidMount() {
-
+    document.body.style.overflow = "hidden";
     const heartBackgrounds = [
       this.heartBg1,
       this.heartBg2,
@@ -42,6 +42,7 @@ class preLodaer extends React.Component {
   }
 
   componentWillUnmount() {
+    document.body.style.overflow = "visible";
     this.t = TweenMax.killAll();
   }
 

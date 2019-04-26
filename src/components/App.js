@@ -17,7 +17,7 @@ class App extends React.Component{
     }
   
   componentDidMount() {
-    document.body.style.overflow = "hidden";
+    
     this.demoAsyncCall().then(() => this.setState({ loading: false }));
   }
 
@@ -27,14 +27,12 @@ class App extends React.Component{
     return new Promise(function(resolve){
       setTimeout(function(){
         resolve();
-        document.body.style.overflow = "visible";
       }, thisThis.state.loadingTime)
     });
   }
 
     render() {
     const { loading }  = this.state;
-
     if (loading) {
       return (  
         <div>
@@ -49,7 +47,5 @@ class App extends React.Component{
     );
   }
 }
-
-
 
 export default App;
