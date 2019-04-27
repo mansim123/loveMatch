@@ -18,7 +18,7 @@ class MyForm extends React.Component {
       showForm: true,
       loadingText: "finding your stats...",
       topLine: "Enter your details below to find out your compatablity!",
-      topLineColor:'white',
+      topLineColor: "white",
       returnData: [],
       errors: {
         firstName: "",
@@ -99,17 +99,14 @@ class MyForm extends React.Component {
       .then(response => {
         this.setState({ returnData: response.data });
 
-        setTimeout(
-          function() {
-            formThis.setState({
-              showLoading: false,
-              showResults: true,
-              topLineColor: "white",
-              topLine: "See your results below!"
-            });
-          },
-          3000
-        );
+        setTimeout(function() {
+          formThis.setState({
+            showLoading: false,
+            showResults: true,
+            topLineColor: "white",
+            topLine: "See your results below!"
+          });
+        }, 3000);
       })
       .catch(function(error) {
         // handle error
@@ -149,7 +146,6 @@ class MyForm extends React.Component {
         showLoading: false
       });
     }, 3000);
-    
   }
 
   animatePage() {
@@ -167,8 +163,8 @@ class MyForm extends React.Component {
 
   render() {
     let errorLine = {
-      color:this.state.topLineColor
-    }
+      color: this.state.topLineColor
+    };
     let errorsStyle = {
       fontSize: "20px",
       textAlign: "left",
@@ -191,45 +187,45 @@ class MyForm extends React.Component {
         </Container>
         {this.state.showForm && (
           <div>
-        <Form onSubmit={e => this.handleSubmit(e)}>
-          <Container>
-            <Form.Group>
-              <Form.Label className="inputName">
-                Please enter person number one!
-              </Form.Label>
-              <Form.Control
-                size="lg"
-                type="text"
-                placeholder="Add first name"
-                onChange={e => this.setState({ firstName: e.target.value })}
-              />
-              <p style={errorsStyle} >{this.state.errors.firstName}</p>
-            </Form.Group>
-            <Form.Group>
-              <Form.Label className="inputName">
-                Please enter person number two!
-              </Form.Label>
-              <Form.Control
-                size="lg"
-                type="text"
-                placeholder="Add Second name"
-                onChange={e =>
-                  this.setState({ secondName: e.target.value })
-                }
-              />
-              <p style={errorsStyle}>{this.state.errors.secondName}</p>
-            </Form.Group>
-            <Button
-              className="formBtn"
-              type="submit"
-              size="lg"
-              variant="primary"
-            >
-              Test our match!
-            </Button>
-          </Container>
-        </Form>
-      </div>
+            <Form onSubmit={e => this.handleSubmit(e)}>
+              <Container>
+                <Form.Group>
+                  <Form.Label className="inputName">
+                    Please enter person number one!
+                  </Form.Label>
+                  <Form.Control
+                    size="lg"
+                    type="text"
+                    placeholder="Add first name"
+                    onChange={e => this.setState({ firstName: e.target.value })}
+                  />
+                  <p style={errorsStyle}>{this.state.errors.firstName}</p>
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label className="inputName">
+                    Please enter person number two!
+                  </Form.Label>
+                  <Form.Control
+                    size="lg"
+                    type="text"
+                    placeholder="Add Second name"
+                    onChange={e =>
+                      this.setState({ secondName: e.target.value })
+                    }
+                  />
+                  <p style={errorsStyle}>{this.state.errors.secondName}</p>
+                </Form.Group>
+                <Button
+                  className="formBtn"
+                  type="submit"
+                  size="lg"
+                  variant="primary"
+                >
+                  Test our match!
+                </Button>
+              </Container>
+            </Form>
+          </div>
         )}
         {this.state.showLoading && (
           <PreLodader loadingText={this.state.loadingText} />

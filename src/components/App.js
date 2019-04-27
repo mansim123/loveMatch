@@ -8,7 +8,7 @@ class App extends React.Component{
       super();
       this.state = {
         loading: true,
-        loadingTime: 100,
+        loadingTime: 5000,
         loadingText: "loading..."
       }
 
