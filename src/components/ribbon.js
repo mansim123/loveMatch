@@ -19,11 +19,11 @@ export class Ribbon extends Component {
         <div className="reactRibbon" ref={div => (this.reactRibbon = div)}>
           <h4>This website was built with React</h4>
           <a
-            href="https://github.com/mansim123/react-website"
+            href="https://github.com/mansim123/loveMatch/"
             target="_blank"
             rel="noopener noreferrer"
-        >
-          See Github Repo here
+          >
+            See Github Repo here
           </a>
         </div>
       </div>
