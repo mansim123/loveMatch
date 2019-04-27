@@ -29,45 +29,8 @@ class MyForm extends React.Component {
     this.loveText = null;
     this.t = null;
 
-    let errorsStyle = {};
-
     this.handleSubmit = this.handleSubmit.bind(this);
-
-    this.handleForm = (
-      <div>
-        <Form onSubmit={e => this.handleSubmit(e)}>
-          <Container>
-            <Form.Group>
-              <Form.Label className="inputName">
-                Please enter person number one!
-              </Form.Label>
-              <Form.Control
-                size="lg"
-                type="text"
-                placeholder="Add first name"
-                onChange={e => this.setState({ firstName: e.target.value })}
-              />
-              <p style={errorsStyle}>{this.state.errors.firstName}</p>
-            </Form.Group>
-            <Form.Group>
-              <Form.Label className="inputName">
-                Please enter person number two!
-              </Form.Label>
-              <Form.Control
-                size="lg"
-                type="text"
-                placeholder="Add Second name"
-                onChange={e => this.setState({ secondName: e.target.value })}
-              />
-              <p style={errorsStyle}>{this.state.errors.secondName}</p>
-            </Form.Group>
-            <Button className="formBtn" type="submit" size="lg" color="primary">
-              Test our match!
-            </Button>
-          </Container>
-        </Form>
-      </div>
-    );
+    this.handleReset = this.handleReset.bind(this);
   }
 
   componentDidMount() {
@@ -95,6 +58,8 @@ class MyForm extends React.Component {
       // errors.name = ""
       // errors.outlineName = normalBorder
     }
+
+    console.log(this.handleForm);
 
     this.setState({
       errors: errors
@@ -128,11 +93,7 @@ class MyForm extends React.Component {
     // Make a request for a user with a given ID
     axios
       .get(
-        "https://love-calculator.p.rapidapi.com/getPercentage?fname=" +
-          fName +
-          "&sname=" +
-          lName +
-          "",
+        `https://love-calculator.p.rapidapi.com/getPercentage?fname=${fName}&sname=${lName}`,
         { headers: headers }
       )
       .then(response => {
@@ -171,6 +132,26 @@ class MyForm extends React.Component {
     });
   }
 
+  handleReset(e) {
+    e.preventDefault();
+
+    let resetState = this;
+
+    resetState.setState({
+      showLoading: true,
+      showResults: false,
+      showForm: true,
+      loadingText: "loading..."
+    });
+
+    setTimeout(function() {
+      resetState.setState({
+        showLoading: false
+      });
+    }, 3000);
+    
+  }
+
   animatePage() {
     let speed = 0.2; //seconds
     this.t = TweenMax.to(this.loveText, 1, {
@@ -185,9 +166,16 @@ class MyForm extends React.Component {
   }
 
   render() {
-    const errorLine = {
+    let errorLine = {
       color:this.state.topLineColor
     }
+    let errorsStyle = {
+      fontSize: "20px",
+      textAlign: "left",
+      color: "#edff00",
+      fontWeight: "bold"
+    };
+
     return (
       <div>
         <Container className="formInfo">
@@ -197,16 +185,69 @@ class MyForm extends React.Component {
             </h1>
           </Row>
           <Row>
-            <h2 style={errorLine}>{this.state.topLine}</h2>
+            <h3 style={errorLine}>{this.state.topLine}</h3>
           </Row>
           <Ribbon />
         </Container>
-        {this.state.showForm && this.handleForm}
+        {this.state.showForm && (
+          <div>
+        <Form onSubmit={e => this.handleSubmit(e)}>
+          <Container>
+            <Form.Group>
+              <Form.Label className="inputName">
+                Please enter person number one!
+              </Form.Label>
+              <Form.Control
+                size="lg"
+                type="text"
+                placeholder="Add first name"
+                onChange={e => this.setState({ firstName: e.target.value })}
+              />
+              <p style={errorsStyle} >{this.state.errors.firstName}</p>
+            </Form.Group>
+            <Form.Group>
+              <Form.Label className="inputName">
+                Please enter person number two!
+              </Form.Label>
+              <Form.Control
+                size="lg"
+                type="text"
+                placeholder="Add Second name"
+                onChange={e =>
+                  this.setState({ secondName: e.target.value })
+                }
+              />
+              <p style={errorsStyle}>{this.state.errors.secondName}</p>
+            </Form.Group>
+            <Button
+              className="formBtn"
+              type="submit"
+              size="lg"
+              variant="primary"
+            >
+              Test our match!
+            </Button>
+          </Container>
+        </Form>
+      </div>
+        )}
         {this.state.showLoading && (
           <PreLodader loadingText={this.state.loadingText} />
         )}
         {this.state.showResults && (
-          <Results props={this.state.returnData} />
+          <Container>
+            <div>
+              <Results props={this.state.returnData} />
+              <Button
+                className="formBtn"
+                size="lg"
+                variant="success"
+                onClick={e => this.handleReset(e)}
+              >
+                Enter New Names
+              </Button>
+            </div>
+          </Container>
         )}
       </div>
     );

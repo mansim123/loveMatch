@@ -43,7 +43,7 @@ class preLodaer extends React.Component {
 
   componentWillUnmount() {
     document.body.style.overflow = "visible";
-    this.t = TweenMax.killAll();
+    this.t = TweenMax.killAll(false, false, true, false);
   }
 
   animateHeartBg(whichBg, b) {

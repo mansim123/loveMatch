@@ -17,7 +17,7 @@ export class Ribbon extends Component {
     return (
       <div>
         <div className="reactRibbon" ref={div => (this.reactRibbon = div)}>
-          <h3>This website was built with React</h3>
+          <h4>This website was built with React</h4>
           <a
             href="https://github.com/mansim123/react-website"
             target="_blank"

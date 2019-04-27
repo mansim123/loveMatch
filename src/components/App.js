@@ -8,13 +8,14 @@ class App extends React.Component{
       super();
       this.state = {
         loading: true,
-        loadingTime: 2000,
+        loadingTime: 100,
         loadingText: "loading..."
       }
 
     this.demoAsyncCall = this.demoAsyncCall.bind(this);
 
     }
+    
   
   componentDidMount() {
     
@@ -33,6 +34,7 @@ class App extends React.Component{
 
     render() {
     const { loading }  = this.state;
+
     if (loading) {
       return (  
         <div>

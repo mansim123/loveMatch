@@ -1,7 +1,22 @@
-.firstName {
-  text-transform: capitalize  
+$font-stack: "Luckiest Guy", "cursive";
+
+.resultsCont {
+  padding-top: 20px;
+
+  h2 {
+    text-transform: capitalize;
+    font-family: $font-stack;
+    color: white;
+    text-align: center;
+    width: 100%;
+    font-size: 2.5rem !important;
+  }
 }
 
-.secondName {
-  text-transform: capitalize  
+@media only screen and (max-width: 750px) {
+  .resultsCont {
+    h2 {
+      font-size: 1.5rem !important;
+    }
+  }
 }

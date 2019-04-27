@@ -9,14 +9,14 @@ $font-stack: "Luckiest Guy", "cursive";
     font-size: 5rem !important;
   }
 
-  h2 {
+  h3 {
     color: white;
     text-align: center;
     width: 100%;
   }
 
   .rowTop {
-    padding-top: 100px;
+    padding-top: 120px;
   }
 }
 
@@ -24,6 +24,10 @@ $font-stack: "Luckiest Guy", "cursive";
     font-size: 30px;
     color: white;
     padding: 20px 0px;
+  }
+
+  .formBtn {
+    margin: 20px 0px;
   }
 
 @media only screen and (max-width: 750px) {
@@ -44,7 +48,7 @@ $font-stack: "Luckiest Guy", "cursive";
       font-size: 3rem !important;
     }
 
-    h2 {
+    h3 {
       font-size: 20px !important;
     }
   }
