@@ -8,7 +8,7 @@ import { Button, Container, Form, Row } from "react-bootstrap";
 import { TweenMax } from "gsap";
 
 class MyForm extends React.Component {
-  constructor(props) {
+  constructor() {
     super();
     this.state = {
       firstName: "",

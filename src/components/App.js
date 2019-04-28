@@ -16,7 +16,6 @@ class App extends React.Component{
 
     }
     
-  
   componentDidMount() {
     
     this.demoAsyncCall().then(() => this.setState({ loading: false }));

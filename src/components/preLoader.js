@@ -24,15 +24,16 @@ class preLodaer extends React.Component {
 
   componentDidMount() {
     document.body.style.overflow = "hidden";
-    const heartBackgrounds = [
+    let heartBackgrounds = [
       this.heartBg1,
       this.heartBg2,
       this.heartBg3,
       this.heartBg4
     ];
 
-    for (let i = 0; i < heartBackgrounds.length; i++) {
-      this.t = TweenMax.to(heartBackgrounds[i], 0, { scale: 0.75 });
+    for (let i of heartBackgrounds) {
+      console.log(i);
+      this.t = TweenMax.to(heartBackgrounds, 0, { scale: 0.75 });
     }
 
     this.t = TweenMax.to(this.heart, 0, { scale: 0.75 });
@@ -59,19 +60,20 @@ class preLodaer extends React.Component {
     this.t = TweenMax.to(this.heart, 0.25, { delay: 0.5, scale: 0.75 });
 
     b++;
-    var c = b - 1;
+    let c = b - 1;
+    let d = [whichBg,b]
 
       if (b < 4) {
-        
-        this.t = TweenMax.delayedCall(1.5, this.animateHeartBg, [whichBg, b]);
+        this.t = TweenMax.delayedCall(1.5, this.animateHeartBg, [...d]);
         this.t = TweenMax.to(whichBg[c], 0.25, { delay: 1.5, css: { zIndex: 99 } });
         this.t = TweenMax.to(whichBg[c], 0.25, { delay: 1.5, scale: 0.75 });
       }
       else{
-        b = 0;
-        this.t = TweenMax.delayedCall(1.5, this.animateHeartBg, [whichBg, b]);
+        d[1] = 0;
+        this.t = TweenMax.delayedCall(1.5, this.animateHeartBg, [...d]);
         this.t = TweenMax.to(whichBg[c], 0.25, { delay: 1.5, css: { zIndex: 99 } });
         this.t = TweenMax.to(whichBg[c], 0.25, { delay: 1.5, scale: 0.75 });
+
       }
   }
 
