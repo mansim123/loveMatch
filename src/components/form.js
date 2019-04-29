@@ -59,8 +59,6 @@ class MyForm extends React.Component {
       // errors.outlineName = normalBorder
     }
 
-    console.log(this.handleForm);
-
     this.setState({
       errors: errors
     });

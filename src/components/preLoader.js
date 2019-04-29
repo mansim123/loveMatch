@@ -32,8 +32,9 @@ class preLodaer extends React.Component {
     ];
 
     for (let i of heartBackgrounds) {
-      console.log(i);
+
       this.t = TweenMax.to(heartBackgrounds, 0, { scale: 0.75 });
+      
     }
 
     this.t = TweenMax.to(this.heart, 0, { scale: 0.75 });

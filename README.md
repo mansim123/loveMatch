@@ -15,7 +15,7 @@ This is a small app built in react. Compares 2 names and finds their "love compa
 
 ## Server used to host:
 
-- Heroku - https://lovematcher.herokuapp.com/
+- https://www.lovematcher.co.uk
 
 ## Dependencies:
 
